@@ -3,40 +3,44 @@ import {Link} from "react-router-dom"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+ const handleClick = () => {
+    setCount((i) => i + 1);
+    console.log("count", count);
+  };
   return (
-    <nav className="bg-gray-900 text-white px-6 py-4">
-      <div className="flex items-center justify-between">
-        {/* Logo */}
-        <h1 className="text-xl font-bold">ProductBank</h1>
-        
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6">
-          <li className="hover:text-gray-400 cursor-pointer"><Link to="/">Home</Link></li>
-          <li className="hover:text-gray-400 cursor-pointer"><Link to="/about">About</Link></li>
-          <li className="hover:text-gray-400 cursor-pointer">Services</li>
-          <li className="hover:text-gray-400 cursor-pointer">Contact</li>
-        </ul>
+    
+    <>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          ☰
-        </button>
+      <div className="bg-orange-500 md:bg-green-500 lg:bg-black px-4 md:px-20 lg:px-10 py-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-3xl text-white font-bold">ProductBank</h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <ul className="flex gap-4">
+              <Link to="/">
+                <li className="text-white">Home</li>
+              </Link>
+              <Link to="/about">
+                <li className="text-white">About</li>
+              </Link>
+              <Link to="/contact">
+                <li className="text-white">Contact</li>
+              </Link>
+            </ul>
+            <Link to="/login">
+              <button
+                onClick={handleClick}
+                className="text-white border border-white px-4 py-1 rounded-md"
+              >
+                Login
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <ul className="mt-4 flex flex-col gap-4 md:hidden">
-          <li className="hover:text-gray-400 cursor-pointer">Home</li>
-          <li className="hover:text-gray-400 cursor-pointer">About</li>
-          <li className="hover:text-gray-400 cursor-pointer">Services</li>
-          <li className="hover:text-gray-400 cursor-pointer">Contact</li>
-        </ul>
-      )}
-    </nav>
+   </>
   );
 };
 

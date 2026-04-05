@@ -8,8 +8,7 @@ import Navbar from "./components/Navbar"
 import Routes from './Routes'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+const [count, setCount] = useState(0);
   return (
     <>
       <Routes/>
