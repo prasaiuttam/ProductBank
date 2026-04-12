@@ -3,6 +3,10 @@ import {Link} from "react-router-dom"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const [count, setCount]=useState(0);
+
+
  const handleClick = () => {
     setCount((i) => i + 1);
     console.log("count", count);
