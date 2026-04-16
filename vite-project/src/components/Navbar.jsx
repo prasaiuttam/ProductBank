@@ -15,7 +15,7 @@ const Navbar = () => {
     
     <>
 
-      <div className="bg-orange-500 md:bg-green-500 lg:bg-black px-4 md:px-20 lg:px-10 py-4">
+      <div className="bg-orange-500 md:bg-green-500 lg:bg-black px-4 md:px-20 lg:px-10 py-4 sticky top-0 ">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-3xl text-white font-bold">ProductBank</h2>

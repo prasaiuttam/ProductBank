@@ -5,12 +5,13 @@ import Contact from '../pages/Contact'
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp'
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 function App() {
   // const title="ProductBank";
   return (
     <>
-        <Navbar/>
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+        <Footer/>
       
       </>
     
