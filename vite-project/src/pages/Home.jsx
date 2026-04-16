@@ -1,8 +1,32 @@
 import React from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import image1 from "../assets/shoes.png";
+import image2 from "../assets/shirt.png";
+import image3 from "../assets/cap.png";
 
  function Home() {
+
   return (
     <div className="bg-gray-50">
+
+ <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
+          
+        <div>
+          <img src={image1} alt="Slide 1"   className="w-full h-[400px] object-cover" />
+          <p className=" legend">Legend 1</p>
+        </div>
+        <div>
+          <img src={image2} alt="Slide 2"   className="w-full h-[400px] object-cover" />
+          <p className="legend">Legend 2</p>
+        </div>
+        <div>
+          <img src={image3} alt="Slide 3"   className="w-full h-[400px] object-cover" />
+          <p className="legend">Legend 3</p>
+        </div>
+      </Carousel>
+
+
       <section className="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <div>
@@ -86,6 +110,53 @@ import React from "react";
           ))}
         </div>
       </section>
+
+<section className="max-w-7xl mx-auto px-4 pb-16">
+  <h2 className="text-2xl font-semibold text-gray-900 text-center mb-10">
+    Why Choose Us
+  </h2>
+
+  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+    {[
+      {
+        title: "Free Shipping",
+        desc: "On all orders over $50",
+        icon: "🚚",
+      },
+      {
+        title: "Secure Payment",
+        desc: "100% safe transactions",
+        icon: "🔒",
+      },
+      {
+        title: "Easy Returns",
+        desc: "30-day return policy",
+        icon: "↩️",
+      },
+      {
+        title: "24/7 Support",
+        desc: "We’re here to help anytime",
+        icon: "💬",
+      },
+    ].map((item, index) => (
+      <div
+        key={index}
+        className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center"
+      >
+        <div className="text-3xl mb-4">{item.icon}</div>
+        <h3 className="text-lg font-medium text-gray-900">
+          {item.title}
+        </h3>
+        <p className="text-gray-600 text-sm mt-2">
+          {item.desc}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+
 
     </div>
   );
