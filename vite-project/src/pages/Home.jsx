@@ -7,6 +7,79 @@ import image3 from "../assets/cap.png";
 
  function Home() {
 
+  const productNewArrivals=[
+            {
+              id: 1,
+              name: "Minimal Sneakers",
+              price: "$79",
+              image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+            },
+            {
+              id: 2,
+              name: "Classic Watch",
+              price: "$149",
+              image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+            },
+            {
+              id: 3,
+              name: "Leather Backpack",
+              price: "$129",
+              image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
+            },
+            {
+              id: 4,
+              name: "Stylish Sunglasses",
+              price: "$59",
+              image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
+            },
+          ];
+
+  const whyChooseUsContent =[
+      {
+        title: "Free Shipping",
+        desc: "On all orders over $50",
+        icon: "🚚",
+      },
+      {
+        title: "Secure Payment",
+        desc: "100% safe transactions",
+        icon: "🔒",
+      },
+      {
+        title: "Easy Returns",
+        desc: "30-day return policy",
+        icon: "↩️",
+      },
+      {
+        title: "24/7 Support",
+        desc: "We’re here to help anytime",
+        icon: "💬",
+      },
+    ];
+
+  const brands = [
+  {
+    name: "Nike",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",
+  },
+  {
+    name: "Adidas",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
+  },
+  {
+    name: "Ray-Ban",
+    logo: "https://www.svgrepo.com/show/303313/ray-ban-logo.svg",
+  },
+  {
+    name: "Zara",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Zara_Logo.svg",
+  },
+  {
+    name: "Sneakers",
+    logo: "https://cdn-icons-png.flaticon.com/512/2589/2589903.png",
+  },
+];
+
   return (
     <div className="bg-gray-50">
 
@@ -63,32 +136,7 @@ import image3 from "../assets/cap.png";
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {[
-            {
-              id: 1,
-              name: "Minimal Sneakers",
-              price: "$79",
-              image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-            },
-            {
-              id: 2,
-              name: "Classic Watch",
-              price: "$149",
-              image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-            },
-            {
-              id: 3,
-              name: "Leather Backpack",
-              price: "$129",
-              image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
-            },
-            {
-              id: 4,
-              name: "Stylish Sunglasses",
-              price: "$59",
-              image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
-            },
-          ].map((product) => (
+          {productNewArrivals.map((product) => (
             <div
               key={product.id}
               className="bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden"
@@ -111,34 +159,44 @@ import image3 from "../assets/cap.png";
         </div>
       </section>
 
-<section className="max-w-7xl mx-auto px-4 pb-16">
-  <h2 className="text-2xl font-semibold text-gray-900 text-center mb-10">
+      <div className="bg-gray-50 py-8 px-6">
+      
+      {/* Heading */}
+     <div className="text-center mb-6">
+        <h1 className="text-4xl font-bold text-gray-900">
+          Our Brand Partners
+        </h1>
+        <p className="mt-4 text-gray-600">
+          We collaborate with top global brands to bring you the best products.
+        </p>
+      </div>
+
+      {/* Brand Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
+        {brands.map((brand, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition duration-300"
+          >
+            <img
+              src={brand.logo}
+              alt={brand.name}
+              className="h-12 object-contain grayscale hover:grayscale-0 transition"
+            />
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+<section className="max-w-7xl mx-auto px-4">
+  <h2 className="text-2xl font-semibold text-gray-900 text-center mt-8 mb-6">
     Why Choose Us
   </h2>
 
+
   <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-    {[
-      {
-        title: "Free Shipping",
-        desc: "On all orders over $50",
-        icon: "🚚",
-      },
-      {
-        title: "Secure Payment",
-        desc: "100% safe transactions",
-        icon: "🔒",
-      },
-      {
-        title: "Easy Returns",
-        desc: "30-day return policy",
-        icon: "↩️",
-      },
-      {
-        title: "24/7 Support",
-        desc: "We’re here to help anytime",
-        icon: "💬",
-      },
-    ].map((item, index) => (
+    {whyChooseUsContent.map((item, index) => (
       <div
         key={index}
         className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center"

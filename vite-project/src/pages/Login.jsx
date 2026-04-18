@@ -1,7 +1,9 @@
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-function Login() {
+import logo from "../assets/ProductBankLogo.png";
+function Login() 
+{
 
   const [formData, setFormData] = useState({ 
     email: '', 
@@ -50,6 +52,15 @@ function Login() {
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           
+        <div className="flex-shrink-0 flex justify-center">
+            <img
+              src={logo}
+              alt="ProductBank"
+               className="h-10 w-auto max-w-[180px]  object-contain"
+            />
+         
+          </div>
+
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Sign in to your account
           </h2>
