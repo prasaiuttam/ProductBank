@@ -1,38 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import image1 from "../assets/shoes.png";
 import image2 from "../assets/shirt.png";
 import image3 from "../assets/cap.png";
+import { useProduct } from "../context/ProductContext";
 
  function Home() {
-
-  const productNewArrivals=[
-            {
-              id: 1,
-              name: "Minimal Sneakers",
-              price: "$79",
-              image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-            },
-            {
-              id: 2,
-              name: "Classic Watch",
-              price: "$149",
-              image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-            },
-            {
-              id: 3,
-              name: "Leather Backpack",
-              price: "$129",
-              image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
-            },
-            {
-              id: 4,
-              name: "Stylish Sunglasses",
-              price: "$59",
-              image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
-            },
-          ];
+  const navigate = useNavigate()
+  const { addProduct,allProduct } = useProduct();
 
   const whyChooseUsContent =[
       {
@@ -79,6 +56,15 @@ import image3 from "../assets/cap.png";
     logo: "https://cdn-icons-png.flaticon.com/512/2589/2589903.png",
   },
 ];
+
+const onClickDetails = (id)=>{
+  console.log("this is id",id)
+  navigate(`/product/${id}`)
+}
+
+const handleAddToCart = (product)=>{
+  addProduct(product)
+}
 
   return (
     <div className="bg-gray-50">
@@ -130,34 +116,39 @@ import image3 from "../assets/cap.png";
         </div>
       </section>
  <section className="max-w-7xl mx-auto px-4 pb-16">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900">New Arrivals</h2>
-          <a href="#" className="text-sm text-gray-600 hover:text-black">View all</a>
-        </div>
+  <div className="flex items-center justify-between mb-6">
+    <h2 className="text-2xl font-semibold text-gray-900">New Arrivals</h2>
+    <a href="#" className="text-sm text-gray-600 hover:text-black">View all</a>
+  </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {productNewArrivals.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-sm font-medium text-gray-900">
-                  {product.name}
-                </h3>
-                <p className="text-gray-600 text-sm mt-1">
-                  {product.price}
-                </p>
-              </div>
-            </div>
-          ))}
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    {allProduct?.map((product) => (
+      <div
+        key={product.id}
+        onClick={()=> onClickDetails(product.id)}
+        className="bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden group"
+      >
+        <div className="relative overflow-hidden">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
         </div>
-      </section>
+        <div className="p-4">
+          <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
+          <p className="text-gray-600 text-sm mt-1">{product.price}</p>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="mt-3 w-full bg-black text-white text-sm font-medium py-2 px-4 rounded-xl hover:bg-gray-800 active:scale-95 transition-all duration-150"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       <div className="bg-gray-50 py-8 px-6">
       
