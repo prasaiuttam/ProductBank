@@ -6,88 +6,50 @@ import image1 from "../assets/shoes.png";
 import image2 from "../assets/shirt.png";
 import image3 from "../assets/cap.png";
 import { useProduct } from "../context/ProductContext";
+import { useCart } from "../context/CartContext";
 
- function Home() {
-  const navigate = useNavigate()
-  const { addProduct,allProduct } = useProduct();
+function Home() {
+  const navigate = useNavigate();
+  const { allProduct } = useProduct();
+  const { addProduct } = useCart();          // ← cart context
 
-  const whyChooseUsContent =[
-      {
-        title: "Free Shipping",
-        desc: "On all orders over $50",
-        icon: "🚚",
-      },
-      {
-        title: "Secure Payment",
-        desc: "100% safe transactions",
-        icon: "🔒",
-      },
-      {
-        title: "Easy Returns",
-        desc: "30-day return policy",
-        icon: "↩️",
-      },
-      {
-        title: "24/7 Support",
-        desc: "We’re here to help anytime",
-        icon: "💬",
-      },
-    ];
+  const whyChooseUsContent = [
+    { title: "Free Shipping", desc: "On all orders over $50", icon: "🚚" },
+    { title: "Secure Payment", desc: "100% safe transactions", icon: "🔒" },
+    { title: "Easy Returns", desc: "30-day return policy", icon: "↩️" },
+    { title: "24/7 Support", desc: "We're here to help anytime", icon: "💬" },
+  ];
 
   const brands = [
-  {
-    name: "Nike",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",
-  },
-  {
-    name: "Adidas",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
-  },
-  {
-    name: "Ray-Ban",
-    logo: "https://www.svgrepo.com/show/303313/ray-ban-logo.svg",
-  },
-  {
-    name: "Zara",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Zara_Logo.svg",
-  },
-  {
-    name: "Sneakers",
-    logo: "https://cdn-icons-png.flaticon.com/512/2589/2589903.png",
-  },
-];
+    { name: "Nike", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" },
+    { name: "Adidas", logo: "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" },
+    { name: "Ray-Ban", logo: "https://www.svgrepo.com/show/303313/ray-ban-logo.svg" },
+    { name: "Zara", logo: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Zara_Logo.svg" },
+    { name: "Sneakers", logo: "https://cdn-icons-png.flaticon.com/512/2589/2589903.png" },
+  ];
 
-const onClickDetails = (id)=>{
-  console.log("this is id",id)
-  navigate(`/product/${id}`)
-}
-
-const handleAddToCart = (product)=>{
-  addProduct(product)
-}
+  const onClickDetails = (id) => navigate(`/product/${id}`);
+  const handleAddToCart = (product) => addProduct(product);   // ← uses cart
 
   return (
     <div className="bg-gray-50">
 
- <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
-          
+      <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
         <div>
-          <img src={image1} alt="Slide 1"   className="w-full h-[400px] object-cover" />
-          <p className=" legend">Legend 1</p>
+          <img src={image1} alt="Slide 1" className="w-full h-[400px] object-cover" />
+          <p className="legend">Legend 1</p>
         </div>
         <div>
-          <img src={image2} alt="Slide 2"   className="w-full h-[400px] object-cover" />
+          <img src={image2} alt="Slide 2" className="w-full h-[400px] object-cover" />
           <p className="legend">Legend 2</p>
         </div>
         <div>
-          <img src={image3} alt="Slide 3"   className="w-full h-[400px] object-cover" />
+          <img src={image3} alt="Slide 3" className="w-full h-[400px] object-cover" />
           <p className="legend">Legend 3</p>
         </div>
       </Carousel>
 
-
       <section className="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
-        {/* Left Content */}
         <div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
             Discover Your Next Favorite Product
@@ -95,7 +57,6 @@ const handleAddToCart = (product)=>{
           <p className="mt-4 text-gray-600 text-lg">
             Shop the latest trends with unbeatable prices and fast delivery.
           </p>
-
           <div className="mt-6 flex space-x-4">
             <button className="bg-black text-white px-6 py-3 rounded-2xl hover:bg-gray-800">
               Shop Now
@@ -105,8 +66,6 @@ const handleAddToCart = (product)=>{
             </button>
           </div>
         </div>
-
-        {/* Right Image */}
         <div>
           <img
             src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da"
@@ -115,98 +74,70 @@ const handleAddToCart = (product)=>{
           />
         </div>
       </section>
- <section className="max-w-7xl mx-auto px-4 pb-16">
-  <div className="flex items-center justify-between mb-6">
-    <h2 className="text-2xl font-semibold text-gray-900">New Arrivals</h2>
-    <a href="#" className="text-sm text-gray-600 hover:text-black">View all</a>
-  </div>
 
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-    {allProduct?.map((product) => (
-      <div
-        key={product.id}
-        onClick={()=> onClickDetails(product.id)}
-        className="bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden group"
-      >
-        <div className="relative overflow-hidden">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+      <section className="max-w-7xl mx-auto px-4 pb-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold text-gray-900">New Arrivals</h2>
+          <a href="#" className="text-sm text-gray-600 hover:text-black">View all</a>
         </div>
-        <div className="p-4">
-          <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
-          <p className="text-gray-600 text-sm mt-1">{product.price}</p>
-          <button
-            onClick={() => handleAddToCart(product)}
-            className="mt-3 w-full bg-black text-white text-sm font-medium py-2 px-4 rounded-xl hover:bg-gray-800 active:scale-95 transition-all duration-150"
-          >
-            Add to Cart
-          </button>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {allProduct?.map((product) => (
+            <div
+              key={product.id}
+              onClick={() => onClickDetails(product.id)}
+              className="bg-white rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden group cursor-pointer"
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
+                <p className="text-gray-600 text-sm mt-1">{product.price}</p>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}
+                  className="mt-3 w-full bg-black text-white text-sm font-medium py-2 px-4 rounded-xl hover:bg-gray-800 active:scale-95 transition-all duration-150"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
 
       <div className="bg-gray-50 py-8 px-6">
-      
-      {/* Heading */}
-     <div className="text-center mb-6">
-        <h1 className="text-4xl font-bold text-gray-900">
-          Our Brand Partners
-        </h1>
-        <p className="mt-4 text-gray-600">
-          We collaborate with top global brands to bring you the best products.
-        </p>
+        <div className="text-center mb-6">
+          <h1 className="text-4xl font-bold text-gray-900">Our Brand Partners</h1>
+          <p className="mt-4 text-gray-600">We collaborate with top global brands to bring you the best products.</p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
+          {brands.map((brand, index) => (
+            <div key={index} className="flex items-center justify-center bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition duration-300">
+              <img src={brand.logo} alt={brand.name} className="h-12 object-contain grayscale hover:grayscale-0 transition" />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Brand Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
-        {brands.map((brand, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-center bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition duration-300"
-          >
-            <img
-              src={brand.logo}
-              alt={brand.name}
-              className="h-12 object-contain grayscale hover:grayscale-0 transition"
-            />
-          </div>
-        ))}
-      </div>
-
-    </div>
-
-<section className="max-w-7xl mx-auto px-4">
-  <h2 className="text-2xl font-semibold text-gray-900 text-center mt-8 mb-6">
-    Why Choose Us
-  </h2>
-
-
-  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-    {whyChooseUsContent.map((item, index) => (
-      <div
-        key={index}
-        className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center"
-      >
-        <div className="text-3xl mb-4">{item.icon}</div>
-        <h3 className="text-lg font-medium text-gray-900">
-          {item.title}
-        </h3>
-        <p className="text-gray-600 text-sm mt-2">
-          {item.desc}
-        </p>
-      </div>
-    ))}
-  </div>
-</section>
-
-
-
+      <section className="max-w-7xl mx-auto px-4">
+        <h2 className="text-2xl font-semibold text-gray-900 text-center mt-8 mb-6">Why Choose Us</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {whyChooseUsContent.map((item, index) => (
+            <div key={index} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition text-center">
+              <div className="text-3xl mb-4">{item.icon}</div>
+              <h3 className="text-lg font-medium text-gray-900">{item.title}</h3>
+              <p className="text-gray-600 text-sm mt-2">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
     </div>
   );
-} export default Home;
+}
+
+export default Home;

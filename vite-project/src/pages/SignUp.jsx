@@ -32,30 +32,33 @@ function SignUp() {
       return;
     }
 
-    try {
-      const response = await fetch(`${api}/api/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-         });
+    try 
+    {
+        const response = await fetch(`${api}/api/signup`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) 
-      {
-        alert("Account created successfully!");
-        console.log(data);
+        if (response.ok) 
+        {
+          alert("Account created successfully!");
+          console.log(data);
+        } 
+        else 
+        {
+          alert(data.message || "Signup failed");
+        }
       } 
-      else 
+
+      catch (error) 
       {
-        alert(data.message || "Signup failed");
-      }
-      } catch (error) 
-      {
-      console.error(error);
-      alert("Something went wrong");
+        console.error(error);
+        alert("Something went wrong");
       }
   };
 

@@ -7,6 +7,7 @@ import SignUp from '../pages/SignUp'
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import Product from '../pages/Product'
+import Cart from "../pages/Cart"          
 function App() {
   // const title="ProductBank";
   return (
@@ -18,7 +19,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/product/:id" element={<Product />} />
+          
         </Routes>
         <Footer/>
       
