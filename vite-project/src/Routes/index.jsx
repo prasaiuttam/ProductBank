@@ -4,6 +4,8 @@ import Home from '../pages/Home'
 import Contact from '../pages/Contact'
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp'
+import ProductList from '../pages/ProductList'
+import AddNewProduct from "../pages/AddNewProduct"; 
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import Product from '../pages/Product'
@@ -21,6 +23,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/productlist" element={<ProductList />} />
+          <Route path="/add-product" element={<AddNewProduct />} />
           
         </Routes>
         <Footer/>

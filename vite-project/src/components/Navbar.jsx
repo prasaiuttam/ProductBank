@@ -52,6 +52,10 @@ const Navbar = () => {
             <Link to="/contact">
               <li className="text-white">Contact</li>
             </Link>
+           <Link to="/productlist">
+              <li className="text-white">Products</li>
+            </Link>
+
           </ul>
 
           <Link to="/login">
